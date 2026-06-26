@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: .
+    container_name: towheels-backend
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-9090}:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
+      MONGODB_URI: ${MONGODB_URI:-mongodb://host.docker.internal:27017/ThaparOnWheels}
+      MONGODB_AUTO_INDEX_CREATION: ${MONGODB_AUTO_INDEX_CREATION:-true}
+      MAIL_HOST: ${MAIL_HOST:-smtp-relay.brevo.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_PROTOCOL: ${MAIL_PROTOCOL:-smtp}
+      MAIL_FROM: ${MAIL_FROM:-}
+      JWT_SECRET: ${JWT_SECRET:-change-this-to-a-strong-32-plus-character-secret}
